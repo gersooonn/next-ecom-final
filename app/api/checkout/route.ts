@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
     if (!isValidObjectId(cartId))
       return NextResponse.json(
         {
-          error: "Invalid cart id!",
+          error: "Invalido cart id!",
         },
         { status: 401 }
       );
