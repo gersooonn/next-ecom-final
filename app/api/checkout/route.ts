@@ -19,6 +19,7 @@ export const POST = async (req: Request) => {
         { status: 401 }
       );
 
+      
     const data = await req.json();
     const cartId = data.cartId as string;
 
