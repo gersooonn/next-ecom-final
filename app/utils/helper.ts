@@ -22,9 +22,9 @@ export const uploadImage = async (file: File) => {
 };
 
 export const formatPrice = (amount: number) => {
-  const formatter = new Intl.NumberFormat("en-US", {
+  const formatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",
-    currency: "INR",
+    currency: "BRL",
   });
 
   return formatter.format(amount);
