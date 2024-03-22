@@ -14,7 +14,7 @@ export const POST = async (req: Request) => {
     if (!session?.user)
       return NextResponse.json(
         {
-          error: "Unauthorized request!",
+          error: "Pedido não autorizado!",
         },
         { status: 401 }
       );
@@ -26,7 +26,7 @@ export const POST = async (req: Request) => {
     if (!isValidObjectId(cartId))
       return NextResponse.json(
         {
-          error: "Invalido cart id!",
+          error: "ID do carrinho inválido!",
         },
         { status: 401 }
       );
@@ -36,7 +36,7 @@ export const POST = async (req: Request) => {
     if (!cartItems)
       return NextResponse.json(
         {
-          error: "Cart not found!",
+          error: "Carrinho não encontrado!",
         },
         { status: 404 }
       );
@@ -44,7 +44,7 @@ export const POST = async (req: Request) => {
     const line_items = cartItems.products.map((product) => {
       return {
         price_data: {
-          currency: "INR",
+          currency: "BRL",
           unit_amount: product.price * 100,
           product_data: {
             name: product.title,
@@ -70,7 +70,7 @@ export const POST = async (req: Request) => {
       line_items,
       success_url: process.env.PAYMENT_SUCCESS_URL!,
       cancel_url: process.env.PAYMENT_CANCEL_URL!,
-      shipping_address_collection: { allowed_countries: ["IN"] },
+      shipping_address_collection: { allowed_countries: ["BR"] },
       customer: customer.id,
     };
 
@@ -78,7 +78,7 @@ export const POST = async (req: Request) => {
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error) {
     return NextResponse.json(
-      { error: "Something went wrong, could not checkout!" },
+      { error: "Algo deu errado, não foi possível finalizar a compra!" },
       { status: 500 }
     );
   }
