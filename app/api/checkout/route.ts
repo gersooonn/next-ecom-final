@@ -14,7 +14,7 @@ export const POST = async (req: Request) => {
     if (!session?.user)
       return NextResponse.json(
         {
-          error: "Pedido não autorizado!",
+           error: "Pedido não autorizado!",
         },
         { status: 401 }
       );
