@@ -15,8 +15,7 @@ type product = {
   totalPrice: number;
   price: number;
   qty: number;
-  category: string;
-  name: string;
+ 
 };
 
 export interface Orders {
@@ -25,9 +24,8 @@ export interface Orders {
   paymentStatus: string;
   date: string;
   total: number;
-  deliveryStatus: "encomendado" | "entregue" | "enviado";
-  price: number
-  createdAt: Date;
+  deliveryStatus: "ordered" | "delivered" | "shipped";
+ 
 }
 
 export default function OrderListPublic({ orders }: { orders: Orders[] }) {
@@ -63,21 +61,21 @@ export default function OrderListPublic({ orders }: { orders: Orders[] }) {
               <div className="flex gap-2 items-center">
                 <div>Delivery Status:</div>
                 <div>
-                  {order.deliveryStatus === "encomendado" ? (
+                  {order.deliveryStatus === "ordered" ? (
                     <Status
                       text="pending"
                       icon={MdAccessTimeFilled}
                       bg="bg-slate-200"
                       color="text-slate-700"
                     />
-                  ) : order.deliveryStatus === "enviado" ? (
+                  ) : order.deliveryStatus === "delivered" ? (
                     <Status
                       text="dispatched"
                       icon={MdDeliveryDining}
                       bg="bg-purple-200"
                       color="text-purple-700"
                     />
-                  ) : order.deliveryStatus === "entregue" ? (
+                  ) : order.deliveryStatus === "shipped" ? (
                     <Status
                       text="delivered"
                       icon={MdDone}
@@ -89,7 +87,7 @@ export default function OrderListPublic({ orders }: { orders: Orders[] }) {
                   )}
                 </div>
               </div>
-              <div>Date: {moment(order.createdAt).fromNow()}</div>
+              <div>Date: 12/02/2024</div>
               <hr />
               <div>
                 <h2 className="font-semibold mt-5 mb-2">Products Order</h2>{" "}

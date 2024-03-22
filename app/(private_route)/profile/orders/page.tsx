@@ -24,6 +24,8 @@ const fetchOrders = async () => {
       total: order.totalAmount,
       deliveryStatus: order.deliveryStatus,
       products: order.orderItems,
+      price:order.orderItems,
+      createdAt:order.orderItems,
     };
   });
 
